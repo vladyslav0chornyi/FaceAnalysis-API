@@ -2,8 +2,12 @@
 venv
 /venv
 photo
+/photo
+frames
+/frames
 FairFace
 /FairFace
 /venv311
 venv311
-report.html
+*.html
+*.mp4
