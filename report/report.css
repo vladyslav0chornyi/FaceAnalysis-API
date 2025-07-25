@@ -1,0 +1,84 @@
+body {
+  background: #f4f6f9;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+h1 {
+  text-align: center;
+  color: #222;
+  margin-top: 2rem;
+  letter-spacing: 2px;
+}
+.frame-card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 900px;
+}
+.frame-title {
+  font-size: 1.3rem;
+  color: #2255a4;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+}
+.frame-img {
+  display: block;
+  margin: 0 auto 1.2rem auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(40,60,120,0.11);
+  max-width: 400px;
+}
+.faces-grid {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-top: 1.2rem;
+}
+.face-card {
+  background: #eef2fa;
+  border-radius: 12px;
+  box-shadow: 0 1px 6px rgba(30,60,120,0.09);
+  padding: 1.3rem;
+  min-width: 250px;
+  flex: 1 1 250px;
+  margin-bottom: 1rem;
+}
+.face-title {
+  color: #2b4d8c;
+  font-weight: 600;
+  margin-bottom: .7rem;
+  font-size: 1.1rem;
+  letter-spacing: .5px;
+}
+.face-attrs {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.face-attrs li {
+  margin-bottom: .6rem;
+  font-size: 1rem;
+  color: #333;
+  display: flex;
+  align-items: center;
+}
+.face-attrs li span.emoji {
+  font-size: 1.2em;
+  margin-right: .5em;
+}
+.no-face {
+  color: #b00;
+  font-weight: 500;
+  margin: 1rem 0;
+  letter-spacing: 1px;
+}
+@media (max-width: 600px) {
+  .frame-card {padding: 1rem;}
+  .faces-grid {gap: 1rem;}
+  .face-card {min-width: 180px;}
+}
