@@ -49,7 +49,7 @@
 
 1. **Клонувати репозиторій**
    ```bash
-   git clone https://github.com/your-username/FaceAnalysis-API.git
+   git clone https://github.com/vladyslav0chornyi/FaceAnalysis-API.git
    cd FaceAnalysis-API
    ```
 
