@@ -1,18 +1,22 @@
 import cv2
 import numpy as np
 import os
+from core.yolo_detector import YoloDetector  # Додаємо імпорт YOLO
+
 
 def process_video(
-    video_path,
-    output_frames_dir,
-    face_app,
-    openvino_models,
-    deepface_analyze_func,
-    interval_sec=2
+        video_path,
+        output_frames_dir,
+        face_app,
+        openvino_models,
+        deepface_analyze_func,
+        interval_sec=2,
+        yolo_model_path="models/yolo/yolov8n.pt",
+        yolo_conf=0.25
 ):
     """
-    Обробляє відео, зберігає кадри, детектить обличчя, рахує атрибути.
-    Повертає frames_info (список даних по кадрах/обличчях).
+    Обробляє відео, зберігає кадри, детектить обличчя, рахує атрибути, детектить об'єкти YOLOv8.
+    Повертає frames_info (список даних по кадрах/обличчях/детекціях).
     """
     os.makedirs(output_frames_dir, exist_ok=True)
     cap = cv2.VideoCapture(video_path)
@@ -27,6 +31,9 @@ def process_video(
     attr_compiled = openvino_models["attr_compiled"]
     age_gender_compiled = openvino_models["age_gender_compiled"]
     emotion_compiled = openvino_models["emotion_compiled"]
+
+    # --- Ініціалізація YOLO ---
+    yolo_detector = YoloDetector(yolo_model_path)
 
     while cap.isOpened():
         ret, frame = cap.read()
@@ -132,9 +139,14 @@ def process_video(
                     "emotion_openvino": emotion_openvino
                 }
                 faces_info.append(face_attrs)
+
+            # --- Детекція YOLO на кадрі ---
+            yolo_detections = yolo_detector.detect(frame, conf=yolo_conf)
+
             frames_info.append({
                 "frame_name": fname,
-                "faces": faces_info
+                "faces": faces_info,
+                "yolo_objects": yolo_detections
             })
             saved_num += 1
         frame_num += 1
