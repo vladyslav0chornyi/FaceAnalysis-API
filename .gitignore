@@ -17,6 +17,12 @@ resource_log.txt
 report-body.html
 .gitignore
 
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
 # Model files (exclude actual model files, keep only README and structure)
 *.onnx
 *.pth
