@@ -12,3 +12,34 @@ data
 resource_log.txt
 report-body.html
 .gitignore
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Model files (exclude actual model files, keep only README and structure)
+*.onnx
+*.pth
+*.pb
+*.tflite
+*.h5
+*.weights
+*.bin
+*.model
+*.pkl
+*.joblib
+models/**/*.onnx
+models/**/*.pth
+models/**/*.pb
+models/**/*.tflite
+models/**/*.h5
+models/**/*.weights
+models/**/*.bin
+models/**/*.model
+models/**/*.pkl
+models/**/*.joblib
+
+# Keep README files in model directories
+!models/**/README.md
