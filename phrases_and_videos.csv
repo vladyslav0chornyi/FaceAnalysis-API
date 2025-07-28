@@ -1,0 +1,31 @@
+min_age,max_age,gender,emotion,phrase,video_path
+0,5,woman,neutral,Привіт, маленька принцесо!,videos/phrase_01.mp4
+0,5,man,neutral,Вітаю, маленький герой!,videos/phrase_02.mp4
+6,12,woman,happy,Гарного настрою, дівчинко!,videos/phrase_03.mp4
+6,12,man,happy,Тримайся, хлопче!,videos/phrase_04.mp4
+13,18,woman,surprise,Вітаю, юна леді!,videos/phrase_05.mp4
+13,18,man,surprise,Привіт, молодий друже!,videos/phrase_06.mp4
+19,29,woman,neutral,Якої чудової посмішки!,videos/phrase_07.mp4
+19,29,man,neutral,Виглядаєш круто!,videos/phrase_08.mp4
+30,45,woman,sad,Не сумуй, все буде добре!,videos/phrase_09.mp4
+30,45,man,sad,Тримайся, ти сильний!,videos/phrase_10.mp4
+46,60,woman,angry,Не варто гніватися, пані!,videos/phrase_11.mp4
+46,60,man,angry,Спокою, пане!,videos/phrase_12.mp4
+61,100,woman,happy,Щастя вам, шановна!,videos/phrase_13.mp4
+61,100,man,happy,Міцного здоров'я, шановний!,videos/phrase_14.mp4
+0,12,woman,surprise,Яка ти весела!,videos/phrase_15.mp4
+0,12,man,surprise,Справжній супергерой!,videos/phrase_16.mp4
+13,18,woman,sad,Не засмучуйся, все ще попереду!,videos/phrase_17.mp4
+13,18,man,sad,Все буде класно, друже!,videos/phrase_18.mp4
+19,29,woman,angry,Заспокойся, краще усміхнись!,videos/phrase_19.mp4
+19,29,man,angry,Краще обійми когось!,videos/phrase_20.mp4
+30,45,woman,happy,Ваша енергія надихає!,videos/phrase_21.mp4
+30,45,man,happy,Радий бачити усміхненого чоловіка!,videos/phrase_22.mp4
+46,60,woman,neutral,Спокійного дня, пані!,videos/phrase_23.mp4
+46,60,man,neutral,Вдалого дня, пане!,videos/phrase_24.mp4
+61,100,woman,sad,Нехай настрій покращиться!,videos/phrase_25.mp4
+61,100,man,sad,Тримайтеся, все буде гаразд!,videos/phrase_26.mp4
+0,5,woman,happy,Ти найкраща!,videos/phrase_27.mp4
+0,5,man,happy,Ти справжній чемпіон!,videos/phrase_28.mp4
+13,18,woman,angry,Не гнівайся, все добре!,videos/phrase_29.mp4
+13,18,man,angry,Заспокойся, друже!,videos/phrase_30.mp4
