@@ -3,7 +3,6 @@ import numpy as np
 import os
 from core.yolo_detector import YoloDetector  # Додаємо імпорт YOLO
 
-
 def process_video(
         video_path,
         output_frames_dir,
@@ -11,11 +10,12 @@ def process_video(
         openvino_models,
         deepface_analyze_func,
         interval_sec=2,
-        yolo_model_path="models/yolo/yolov8n.pt",
-        yolo_conf=0.25
+        yolo_model_path="models/yolo/yolo11n.pt",
+        yolo_conf=0.25,
+        yolo_task="detect"  # додано task: detect, segment, pose
 ):
     """
-    Обробляє відео, зберігає кадри, детектить обличчя, рахує атрибути, детектить об'єкти YOLOv8.
+    Обробляє відео, зберігає кадри, детектить обличчя, рахує атрибути, детектить об'єкти YOLOv11.
     Повертає frames_info (список даних по кадрах/обличчях/детекціях).
     """
     os.makedirs(output_frames_dir, exist_ok=True)
@@ -46,7 +46,6 @@ def process_video(
             faces = face_app.get(frame)
             faces_info = []
             for face in faces:
-                # bbox crop
                 box = face.bbox.astype(int)
                 y1, y2 = max(box[1], 0), min(box[3], frame.shape[0])
                 x1, x2 = max(box[0], 0), min(box[2], frame.shape[1])
@@ -54,7 +53,6 @@ def process_video(
                 if cropped_face is None or cropped_face.size == 0:
                     continue
 
-                # InsightFace
                 sex = getattr(face, "sex", None)
                 sex_score = getattr(face, "sex_score", None)
                 age = int(face.age) if hasattr(face, "age") else None
@@ -67,7 +65,6 @@ def process_video(
                 pose = getattr(face, "pose", None)
                 mask = getattr(face, 'mask', False)
 
-                # DeepFace
                 deep = deepface_analyze_func(cropped_face)
                 if isinstance(deep, list):
                     deep_attr = deep[0] if len(deep) > 0 else {}
@@ -78,7 +75,6 @@ def process_video(
                 emotion_deep = deep_attr.get("dominant_emotion", None)
                 race_deep = deep_attr.get("dominant_race", None)
 
-                # OpenVINO person-attributes
                 resized_person = cv2.resize(frame, (80, 160))
                 input_blob = np.expand_dims(resized_person.transpose(2, 0, 1), axis=0)
                 attr_results = attr_compiled([input_blob])
@@ -88,7 +84,6 @@ def process_video(
                 ]
                 person_attr = {k: ("є" if v > 0.75 else "немає") for k, v in zip(keys, attr_results[0][0])}
 
-                # OpenVINO age-gender
                 if cropped_face is not None and cropped_face.size > 0:
                     try:
                         age_gender_input = cv2.resize(cropped_face, (62, 62))
@@ -104,7 +99,6 @@ def process_video(
                     openvino_age = None
                     openvino_gender = None
 
-                # OpenVINO emotion
                 if cropped_face is not None and cropped_face.size > 0:
                     try:
                         emotion_input = cv2.resize(cropped_face, (64, 64))
@@ -141,7 +135,7 @@ def process_video(
                 faces_info.append(face_attrs)
 
             # --- Детекція YOLO на кадрі ---
-            yolo_detections = yolo_detector.detect(frame, conf=yolo_conf)
+            yolo_detections = yolo_detector.detect(frame, conf=yolo_conf, task=yolo_task)
 
             frames_info.append({
                 "frame_name": fname,

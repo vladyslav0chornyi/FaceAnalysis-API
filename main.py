@@ -20,14 +20,17 @@ def main():
     face_app = init_face_analysis(provider=INSIGHTFACE_PROVIDER, ctx_id=INSIGHTFACE_CTX_ID)
     openvino_models = init_openvino_models(device_name=OPENVINO_DEVICE)
 
-    # 3. Обробка відео
+    # 3. Обробка відео (можна змінити yolo_task на "detect", "segment", "pose")
     frames_info = process_video(
         video_path=VIDEO_PATH,
         output_frames_dir=OUTPUT_FRAMES_DIR,
         face_app=face_app,
         openvino_models=openvino_models,
         deepface_analyze_func=deepface_analyze_func,
-        interval_sec=FRAME_INTERVAL_SEC
+        interval_sec=FRAME_INTERVAL_SEC,
+        yolo_model_path="models/yolo/yolo11n.pt",
+        yolo_conf=0.25,
+        yolo_task="detect"  # або "segment", "pose" для відповідних моделей
     )
 
     # 4. Формування html body

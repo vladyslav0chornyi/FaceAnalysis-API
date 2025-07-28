@@ -1,14 +1,8 @@
 .idea
 venv
 /venv
-venv311
-/venv311
-photo
-/photo
 frames
 /frames
-FairFace
-/FairFace
 *.html
 *.mp4
 /report/video_report.html

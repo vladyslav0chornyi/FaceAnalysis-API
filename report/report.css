@@ -32,6 +32,43 @@ h1 {
   box-shadow: 0 2px 12px rgba(40,60,120,0.11);
   max-width: 400px;
 }
+.yolo-objects {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-top: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+.yolo-card {
+  background: #eef2fa;
+  border-radius: 12px;
+  box-shadow: 0 1px 6px rgba(30,60,120,0.09);
+  padding: 1.3rem;
+  min-width: 250px;
+  flex: 1 1 250px;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  color: #2b4d8c;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.yolo-title {
+  font-weight: 600;
+  margin-bottom: .7rem;
+  font-size: 1.1rem;
+  letter-spacing: .5px;
+}
+.yolo-attr {
+  color: #333;
+  margin: .3em 0;
+  font-size: .98em;
+}
+.yolo-bbox, .yolo-conf {
+  display: block;
+  margin-bottom: .3em;
+}
 .faces-grid {
   display: flex;
   gap: 2rem;
@@ -77,8 +114,22 @@ h1 {
   margin: 1rem 0;
   letter-spacing: 1px;
 }
+
+/* Додаємо стиль для підсумку кадру */
+.frame-summary {
+  background: #f9f6ee;
+  margin: 1em 0 1.5em 0;
+  padding: 1em;
+  border-radius: 8px;
+  color: #444;
+  font-size: 1.04em;
+  font-style: italic;
+  border-left: 4px solid #dcc96e;
+}
+
 @media (max-width: 600px) {
   .frame-card {padding: 1rem;}
   .faces-grid {gap: 1rem;}
-  .face-card {min-width: 180px;}
+  .face-card, .yolo-card {min-width: 180px;}
+  .yolo-objects {gap: 1rem;}
 }
